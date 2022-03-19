@@ -1,0 +1,27 @@
+首先，要有 table 的全部功能
+添加 request 参数，接收函数返回 promise
+翻页、搜索等操作需要自动刷新
+
+request 返回格式定义好，组件内就可以直接取数据
+request={
+(data) => {
+fetch('url', data).then(res => {
+
+        })
+
+    }
+
+}
+
+如果只取到 fetch，就需要组件内处理接口返回；
+如果取到 then，就需要加个 new Promise
+
+其实 request 加不加都 then 都是一样的，用 getData 获得相要的数据
+getData 为空时，默认返回的是标准数据，这里还涉及到取值的判定数组配置
+getData 如果是 object 或函数返回 object，正好对应接口返回取值
+getData 是字符串，需要配置好对应关系
+responseConf 响应配置{
+records: ['records', 'record', 'data'],
+pageSize: ['pageSize'],
+pageNum: ['page', 'pageNum']
+}
