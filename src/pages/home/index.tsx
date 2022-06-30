@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
     this is homepage
     </>
   );
 }
+export default Home;
