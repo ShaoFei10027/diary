@@ -186,6 +186,14 @@ module.exports = function (webpackEnv) {
         }
       )
     }
+    if (preProcessor === 'less-loader') {
+      loaders.push({
+        loader: require.resolve('sass-resources-loader'),
+        options: {
+          resources: paths.appSrc + '/theme.less',
+        },
+      })
+    }
     return loaders
   }
 
