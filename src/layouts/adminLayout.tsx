@@ -1,4 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
+import { intl } from '@/locale';
 import styles from './admin.less';
 import { Menu } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
@@ -35,10 +36,10 @@ export default function AdminLayout() {
           onClick={handleSelect}
           selectedKeys={selectedKeys}
         >
-          <Menu.Item key="questions">题库管理</Menu.Item>
-          <Menu.Item key="products">内容创作</Menu.Item>
-          <Menu.Item key="statistics">数据统计</Menu.Item>
-          <Menu.Item key="resume">个人简历</Menu.Item>
+          <Menu.Item key="questions">{intl.get('Question_bank_management')}</Menu.Item>
+          <Menu.Item key="products">{intl.get('Content_Creation')}</Menu.Item>
+          <Menu.Item key="statistics">{intl.get('data_statistics')}</Menu.Item>
+          <Menu.Item key="resume">{intl.get('curriculum_vitae')}</Menu.Item>
         </Menu>
         <div
           onClick={handleClickSettings}
@@ -46,7 +47,7 @@ export default function AdminLayout() {
             selectedKeys[0] === 'settings' ? styles.selected : ''
           }`}
         >
-          设置
+          {intl.get('set_up')}
         </div>
       </div>
       <div className={styles.content}>

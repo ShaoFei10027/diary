@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { intl } from '@/locale';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Menu, message } from 'antd';
@@ -72,19 +73,19 @@ export default function Header() {
           key: 'account',
           children: [
             {
-              label: '个人中心',
+              label: intl.get('Personal_Center'),
               key: 'userInfo',
             },
 
             {
-              label: '退出登录',
+              label: intl.get('Log_out'),
               key: 'logout',
             },
           ].concat(
             userInfo.role === 'admin'
               ? [
                   {
-                    label: '管理后台',
+                    label: intl.get('Manage_background'),
                     key: 'admin',
                   },
                 ]
@@ -95,7 +96,7 @@ export default function Header() {
     }
     return unchangedItems.concat([
       {
-        label: '登录',
+        label: intl.get('Sign_in'),
         key: 'login',
       },
     ]);
@@ -105,7 +106,7 @@ export default function Header() {
       <div className={styles.logo}>Logo</div>
       <div className={styles.title}>
         <span style={{ cursor: 'pointer' }} onClick={goHome}>
-          前端知识网
+          {intl.get('Front_end_knowledge_network')}
         </span>
       </div>
       <div className={styles.menu}>

@@ -1,4 +1,5 @@
 import { Table } from 'antd';
+import { intl } from '@/locale';
 
 import styles from './common.less';
 
@@ -7,18 +8,18 @@ const columns = [
     width: '150px',
     title: (
       <div className={styles.splitCell}>
-        <div className={styles.left}>页面、功能</div>
-        <div className={styles.right}>角色</div>
+        <div className={styles.left}>页面、{intl.get('function')}</div>
+        <div className={styles.right}>{intl.get('role')}</div>
       </div>
     ),
     dataIndex: 'page',
   },
   {
-    title: '访客',
+    title: intl.get('visitor'),
     dataIndex: 'y',
   },
   {
-    title: '注册会员',
+    title: intl.get('Registered_Member'),
     dataIndex: 'l0',
   },
   {
@@ -30,23 +31,23 @@ const columns = [
     dataIndex: 'l2',
   },
   {
-    title: '邀请测试',
+    title: intl.get('Invite_Tests'),
     dataIndex: 'test',
   },
 ];
 
 const data = [
   {
-    page: '浏览',
+    page: intl.get('browse'),
   },
   {
     page: '回复、留言',
   },
   {
-    page: '主题颜色',
+    page: intl.get('Theme_Colors'),
   },
   {
-    page: '内测功能',
+    page: intl.get('Internal_test_function'),
   },
   // {
   //   page: '下载文档',
@@ -59,7 +60,7 @@ const data = [
 export default function AuthSetting() {
   return (
     <div className={styles.setting}>
-      <div className={styles.header}>权限设置</div>
+      <div className={styles.header}>{intl.get('Permission_Settings')}</div>
       <div>
         <Table
           bordered

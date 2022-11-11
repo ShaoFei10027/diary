@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { intl } from '@/locale';
 import { List, Input, Form, Button, message } from 'antd';
 import Card from '@/pages/components/card';
 import { getQuestions, saveQuestion, getQuestion } from '@/api';
@@ -31,16 +32,16 @@ export default function Questions() {
       })
         .then((r) => {
           if (r.success) {
-            message.success('保存成功');
+            message.success(intl.get('Saving_succeeded'));
             setModified(false);
             getQuestionsList();
           } else {
-            message.error('保存失败');
+            message.error(intl.get('Save_failed'));
           }
         })
         .catch((err) => {
-          console.log('保存失败', err);
-          message.error('保存失败');
+          console.log(intl.get('Save_failed'), err);
+          message.error(intl.get('Save_failed'));
         })
         .finally(() => {
           setSaveLoading(false);
@@ -74,10 +75,10 @@ export default function Questions() {
     <div className={styles.page}>
       <div className={styles.questions}>
         <Card
-          title="问题列表"
+          title={intl.get('Question_List')}
           extra={
             <Button type="link" onClick={onAdd}>
-              新增
+              {intl.get('newly_added')}
             </Button>
           }
         >
@@ -95,7 +96,7 @@ export default function Questions() {
       </div>
       <div className={styles.makeQuestion}>
         <Card
-          title={curId ? `查看/编辑问题（#${curId}）` : '新增问题'}
+          title={curId ? `查看/编辑问题（#${curId}）` : intl.get('New_problems')}
           extra={
             <Button
               onClick={onSave}
@@ -104,33 +105,33 @@ export default function Questions() {
               loading={saveLoading}
               disabled={!modified}
             >
-              保存
+              {intl.get('preservation')}
             </Button>
           }
         >
           <Form form={form}>
             <div className={styles.ask}>
-              <p>问题描述</p>
+              <p>{intl.get('Problem_description')}</p>
               <Form.Item
                 name="question"
-                rules={[{ required: true, message: '问题描述是必填项' }]}
+                rules={[{ required: true, message: intl.get('Problem_description_is_required') }]}
               >
                 <Input.TextArea
                   rows={5}
-                  placeholder="问题描述"
+                  placeholder={intl.get('Problem_description')}
                   onChange={() => setModified(true)}
                 />
               </Form.Item>
             </div>
             <div className={styles.answer}>
-              <p>答案解析</p>
+              <p>{intl.get('Answer_analysis')}</p>
               <Form.Item
                 name="explanation"
-                rules={[{ required: true, message: '答案解析是必填项' }]}
+                rules={[{ required: true, message: intl.get('Answer_resolution_is_required') }]}
               >
                 <Input.TextArea
                   rows={5}
-                  placeholder="答案解析"
+                  placeholder={intl.get('Answer_analysis')}
                   onChange={() => setModified(true)}
                 />
               </Form.Item>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { intl } from '@/locale';
 import { Modal, Form, Input, Button, message } from 'antd';
 import { login } from '@/api';
 import styles from './index.less';
@@ -40,14 +41,14 @@ export default function Login(props: IProps) {
       <div className={styles.container}>
         <Form form={form}>
           <Form.Item
-            label="账号"
+            label={intl.get('account_number')}
             name="user"
             rules={[{ required: true, message: '' }]}
           >
             <Input allowClear autoComplete="off" />
           </Form.Item>
           <Form.Item
-            label="密码"
+            label={intl.get('password')}
             name="pass"
             rules={[{ required: true, message: '' }]}
           >
@@ -55,7 +56,7 @@ export default function Login(props: IProps) {
           </Form.Item>
         </Form>
         <Button type="primary" onClick={onLogin} loading={loginLoading}>
-          登录
+          {intl.get('Sign_in')}
         </Button>
       </div>
     </Modal>

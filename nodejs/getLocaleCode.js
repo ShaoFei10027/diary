@@ -23,6 +23,11 @@ function getLocaleCode(str, znch) {
                 `'${item}'`,
                 `intl.get('${Object.keys(enTitleObj)[0]}')`
               );
+            } else if (/[:]/.test(line)) {
+              rp = line.replace(
+                `'${item}'`,
+                `intl.get('${Object.keys(enTitleObj)[0]}')`
+              );
             } else {
               rp = line
                 .replace(

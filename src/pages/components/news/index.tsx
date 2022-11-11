@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { intl } from '@/locale';
 import { useNavigate } from 'react-router-dom';
 import Card from '@/pages/components/card';
 import { getNews } from '@/api';
@@ -18,7 +19,7 @@ export default function News() {
   }, []);
   const onClick = (id: number) => history(`/articles/${id}`);
   return (
-    <Card title="最新文章" extra={<a href="#">more</a>}>
+    <Card title={intl.get('Latest_articles')} extra={<a href="#">more</a>}>
       <div className={styles.cardBody}>
         {list.map((item) => (
           <p key={item.id} onClick={() => onClick(item.id)}>

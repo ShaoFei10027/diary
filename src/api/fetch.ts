@@ -1,4 +1,5 @@
 import { message } from 'antd';
+import { intl } from '@/locale';
 interface ParamsType {
   [propsName: string]: any;
 }
@@ -17,7 +18,7 @@ export const get = function (url: string, params: ParamsType = {}) {
       return res.json();
     })
     .catch((err) => {
-      message.error('请求超时');
+      message.error(intl.get('request_timeout'));
       throw new Error(err);
     });
 };
@@ -40,7 +41,7 @@ export const post = function (url: string, params: ParamsType = {}) {
       return res.json();
     })
     .catch((err) => {
-      message.error('请求超时');
+      message.error(intl.get('request_timeout'));
       throw new Error(err);
     });
 };

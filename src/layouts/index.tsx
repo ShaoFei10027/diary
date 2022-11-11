@@ -1,4 +1,5 @@
 import React, { Suspense, useMemo } from 'react';
+import { intl } from '@/locale';
 import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import routesConfig from './routes';
@@ -14,9 +15,9 @@ export default function Layouts() {
           : [true, true];
         let Element = null;
         if (!requireLoginStatus) {
-          Element = <div>无权限，请先登录</div>;
+          Element = <div>无权限，{intl.get('Please_login_first')}</div>;
         } else if (!requireRoleStatus) {
-          Element = <div>无权限</div>;
+          Element = <div>{intl.get('No_permission')}</div>;
         } else {
           const Component = route.component;
           Element = (

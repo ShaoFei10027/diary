@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { intl } from '@/locale';
 import { Row, Col, Typography } from 'antd';
 import { HighlightOutlined } from '@ant-design/icons';
 import styles from './common.less';
@@ -11,9 +12,9 @@ export default function HomePageSetting() {
   );
   return (
     <div className={styles.setting}>
-      <div className={styles.header}>主页设置</div>
+      <div className={styles.header}>{intl.get('Home_Page_Settings')}</div>
       <Row>
-        <Col span={2}>当前主页：</Col>
+        <Col span={2}>{intl.get('Current_Home_Page')}：</Col>
         <Col span={22}>
           <Paragraph
             editable={{
