@@ -1,5 +1,6 @@
 function getLocaleCode(str, znch) {
   if (znch) {
+    let hasReplaceFlag = false;
     const res = str.split('\r\n').map((line) => {
       let rp = line;
       if (
@@ -11,19 +12,25 @@ function getLocaleCode(str, znch) {
         newlineArr.forEach((item) => {
           const enTitleObj = znch.find((v) => Object.values(v)[0] === item);
           if (enTitleObj) {
+            hasReplaceFlag = true;
             if (/(const)|(let)/.test(line) && /[=]/.test(line)) {
               rp = line.replace(
                 `"${item}"`,
-                `intl.get("Object.keys(enTitleObj)[0])"`
+                `intl.get("${Object.keys(enTitleObj)[0]}")`
+              );
+            } else if (/[\(\)]/.test(line)) {
+              rp = line.replace(
+                `'${item}'`,
+                `intl.get("${Object.keys(enTitleObj)[0]}")`
               );
             } else {
               rp = line.replace(
                 `"${item}"`,
-                `{intl.get("Object.keys(enTitleObj)[0])"}`
+                `{intl.get("${Object.keys(enTitleObj)[0]}")}`
               );
               rp = line.replace(
                 `${item}`,
-                `{intl.get("Object.keys(enTitleObj)[0])"}`
+                `{intl.get("${Object.keys(enTitleObj)[0]}")}`
               );
             }
           }
@@ -31,6 +38,9 @@ function getLocaleCode(str, znch) {
       }
       return rp;
     });
+    if (hasReplaceFlag) {
+      res[0] += "\r\nimport { intl } from '@/locale';";
+    }
     return res.join('\r\n');
   }
   const data = [];
