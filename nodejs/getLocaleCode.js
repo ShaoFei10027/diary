@@ -24,18 +24,19 @@ function getLocaleCode(str, znch) {
                 `intl.get('${Object.keys(enTitleObj)[0]}')`
               );
             } else {
-              rp = line.replace(
-                `"${item}"`,
-                `{intl.get('${Object.keys(enTitleObj)[0]}')}`
-              );
-              rp = line.replace(
-                `'${item}'`,
-                `{intl.get('${Object.keys(enTitleObj)[0]}')}`
-              );
-              rp = line.replace(
-                `${item}`,
-                `{intl.get('${Object.keys(enTitleObj)[0]}')}`
-              );
+              rp = line
+                .replace(
+                  `"${item}"`,
+                  `{intl.get('${Object.keys(enTitleObj)[0]}')}`
+                )
+                .replace(
+                  `'${item}'`,
+                  `{intl.get('${Object.keys(enTitleObj)[0]}')}`
+                )
+                .replace(
+                  `${item}`,
+                  `{intl.get('${Object.keys(enTitleObj)[0]}')}`
+                );
             }
           }
         });
