@@ -1,0 +1,25 @@
+.page {
+  display: flex;
+  padding: 8px;
+  background-color: #fcfcfc;
+  min-height: 100%;
+  .questions {
+    flex: 1;
+    margin-right: 8px;
+    .list {
+      :global(.ant-list-item) {
+        cursor: pointer;
+        &:hover {
+          background-color: #fcfcfc;
+        }
+      }
+    }
+  }
+  .makeQuestion {
+    flex: none;
+    width: 400px;
+  }
+  .ask {
+    margin-bottom: 8px;
+  }
+}

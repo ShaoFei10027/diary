@@ -1,0 +1,39 @@
+.background {
+  background-color: #fff;
+  height: calc(100vh - 51px);
+  width: calc(100% - 200px);
+  position: fixed;
+  top: 51px;
+  z-index: 0;
+}
+.document {
+  position: relative;
+  height: calc(100vh - 51px);
+  width: 100%;
+  overflow: auto;
+  z-index: 1;
+  padding: 20px;
+  .left,
+  .right {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 0 8px;
+    width: calc(50% - 16px);
+    float: left;
+  }
+  ul.orderList {
+    list-style-type: decimal;
+    margin: 0;
+    padding: 0 16px;
+  }
+  ul.list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      width: 200px;
+    }
+  }
+}

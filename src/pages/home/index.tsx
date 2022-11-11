@@ -1,12 +1,15 @@
-import React from 'react'
-// import Login from '@/components/login'
+import React from 'react';
+import News from '@/pages/components/news';
+import { Collapse } from 'antd';
+import styles from './index.less';
 
 const Home: React.FC = () => {
   return (
-    <>
-      this is homepage
-      {/* <Login /> */}
-    </>
-  )
-}
-export default Home
+    <div>
+      <div style={{ width: '400px' }}>
+        <News />
+      </div>
+    </div>
+  );
+};
+export default Home;

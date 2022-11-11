@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+  .menu {
+    position: absolute;
+    width: 200px;
+    height: calc(100vh - 51px);
+    border-right: 1px solid #eee;
+    .settings {
+      width: 100%;
+      height: 50px;
+      position: absolute;
+      bottom: 0;
+      border-top: 1px solid #eee;
+      line-height: 50px;
+      padding-left: 16px;
+      cursor: pointer;
+      &:hover {
+        color: #1890ff;
+      }
+      &.selected {
+        color: #1890ff;
+        background-color: #e6f7ff;
+      }
+    }
+  }
+  .content {
+    margin-left: 200px;
+    overflow: auto;
+    height: calc(100vh - 51px);
+    position: relative;
+  }
+}

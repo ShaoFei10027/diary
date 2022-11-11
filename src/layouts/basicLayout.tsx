@@ -1,16 +1,11 @@
-import { Routes, Route } from 'react-router-dom'
-import styles from './basicLayout.less'
-import Header from './components/header'
+import { Outlet } from 'react-router-dom';
+import Header from './components/header';
 
-import Home from '@/pages/home'
-
-export default function BasicLayout() {
+export default function BasicLayout(props: any) {
   return (
     <div>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-      </Routes>
+      <Outlet />
     </div>
-  )
+  );
 }

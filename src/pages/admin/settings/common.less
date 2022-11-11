@@ -1,0 +1,50 @@
+.setting {
+  .header {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  margin-bottom: 20px;
+}
+
+.changeCellTable {
+  :global {
+    .ant-table-thead .ant-table-cell {
+      &:first-child {
+        padding: 0 !important;
+      }
+    }
+    .ant-table-row .ant-table-cell {
+      &:first-child {
+        background: #fafafa;
+      }
+    }
+  }
+  .splitCell {
+    width: 0;
+    height: 0;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 160px;
+      position: absolute;
+      top: -1px;
+      left: -5px;
+      border: 1px solid #eee;
+      transform: rotate(19deg);
+    }
+    .left {
+      position: absolute;
+      top: 1px;
+      width: 77px;
+      left: 6px;
+    }
+    .right {
+      position: absolute;
+      top: -21px;
+      width: 60px;
+      left: 92px;
+    }
+  }
+}

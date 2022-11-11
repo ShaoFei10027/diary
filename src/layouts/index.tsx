@@ -1,10 +1,39 @@
-import React from 'react';
-import BasicLayout from './basicLayout'
+import React, { Suspense, useMemo } from 'react';
+import { useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import routesConfig from './routes';
+import { RouteType } from './routes.d';
 
 export default function Layouts() {
-  return (
-    <>
-      <BasicLayout />
-    </>
-  );
+  const { isLogin, userInfo } = useSelector((state: any) => state.root);
+  const routes = useMemo(() => {
+    const getRoutes: any = (arr: RouteType[]) => {
+      return arr.map((route: RouteType) => {
+        const [requireLoginStatus, requireRoleStatus] = route.required
+          ? route.required(isLogin, userInfo)
+          : [true, true];
+        let Element = null;
+        if (!requireLoginStatus) {
+          Element = <div>无权限，请先登录</div>;
+        } else if (!requireRoleStatus) {
+          Element = <div>无权限</div>;
+        } else {
+          const Component = route.component;
+          Element = (
+            <Suspense fallback="...">
+              <Component />
+            </Suspense>
+          );
+        }
+        return {
+          path: route.path,
+          element: Element,
+          children: route.children ? getRoutes(route.children) : undefined,
+        };
+      });
+    };
+    return getRoutes(routesConfig);
+  }, [isLogin, userInfo]);
+
+  return useRoutes(routes);
 }

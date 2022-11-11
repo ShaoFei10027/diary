@@ -1,5 +1,63 @@
-import { Modal } from 'antd'
+import { useEffect, useState } from 'react';
+import { Modal, Form, Input, Button, message } from 'antd';
+import { login } from '@/api';
+import styles from './index.less';
 
-export default function Login() {
-  return <Modal visible={true} footer={null}></Modal>
+interface IProps {
+  visible: boolean;
+  onClose: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onLoginSuccess: (res: any) => void;
+}
+
+export default function Login(props: IProps) {
+  const { visible, onClose, onLoginSuccess } = props;
+  const [form] = Form.useForm();
+  const [loginLoading, setLoginLoading] = useState(false);
+  const onLogin = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        setLoginLoading(true);
+        login(values)
+          .then((res) => {
+            onLoginSuccess(res);
+          })
+          .finally(() => {
+            setLoginLoading(false);
+          });
+      })
+      .catch(() => {
+        message.error('请输入账号和密码！');
+      });
+  };
+  useEffect(() => {
+    if (!visible) {
+      form && form.resetFields();
+    }
+  }, [form, visible]);
+  return (
+    <Modal visible={visible} onCancel={onClose} footer={null}>
+      <div className={styles.container}>
+        <Form form={form}>
+          <Form.Item
+            label="账号"
+            name="user"
+            rules={[{ required: true, message: '' }]}
+          >
+            <Input allowClear autoComplete="off" />
+          </Form.Item>
+          <Form.Item
+            label="密码"
+            name="pass"
+            rules={[{ required: true, message: '' }]}
+          >
+            <Input.Password allowClear onPressEnter={onLogin} />
+          </Form.Item>
+        </Form>
+        <Button type="primary" onClick={onLogin} loading={loginLoading}>
+          登录
+        </Button>
+      </div>
+    </Modal>
+  );
 }
