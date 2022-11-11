@@ -158,6 +158,7 @@
     "@types/html-to-draftjs": "^1.4.0",
     "@types/react-draft-wysiwyg": "^1.13.4",
     "@types/three": "^0.143.0",
+    "request": "^2.88.2",
     "sass-resources-loader": "^2.2.5"
   }
 }
