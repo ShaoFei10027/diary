@@ -16,21 +16,25 @@ function getLocaleCode(str, znch) {
             if (/(const)|(let)/.test(line) && /[=]/.test(line)) {
               rp = line.replace(
                 `"${item}"`,
-                `intl.get("${Object.keys(enTitleObj)[0]}")`
+                `intl.get('${Object.keys(enTitleObj)[0]}')`
               );
             } else if (/[\(\)]/.test(line)) {
               rp = line.replace(
                 `'${item}'`,
-                `intl.get("${Object.keys(enTitleObj)[0]}")`
+                `intl.get('${Object.keys(enTitleObj)[0]}')`
               );
             } else {
               rp = line.replace(
                 `"${item}"`,
-                `{intl.get("${Object.keys(enTitleObj)[0]}")}`
+                `{intl.get('${Object.keys(enTitleObj)[0]}')}`
+              );
+              rp = line.replace(
+                `'${item}'`,
+                `{intl.get('${Object.keys(enTitleObj)[0]}')}`
               );
               rp = line.replace(
                 `${item}`,
-                `{intl.get("${Object.keys(enTitleObj)[0]}")}`
+                `{intl.get('${Object.keys(enTitleObj)[0]}')}`
               );
             }
           }
