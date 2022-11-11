@@ -1,15 +1,31 @@
-import znch from '../src/locale/zn_ch';
-
-function getLocaleCode(str, fileReplace) {
-  if (fileReplace) {
+function getLocaleCode(str, znch) {
+  if (znch) {
     const res = str.split('\r\n').map((line) => {
       let rp = line;
-      if (/[\u4e00-\u9fa5]+/.test(line)) {
+      if (
+        /[\u4e00-\u9fa5]+/.test(line) &&
+        !/^[ ]*\/\//.test(line) &&
+        !/^[ ]*\{\/\*/.test(line)
+      ) {
         const newlineArr = line.match(/[\u4e00-\u9fa5]+/g);
         newlineArr.forEach((item) => {
           const enTitleObj = znch.find((v) => Object.values(v)[0] === item);
           if (enTitleObj) {
-            rp = line.replace(item, Object.keys(enTitleObj)[0]);
+            if (/(const)|(let)/.test(line) && /[=]/.test(line)) {
+              rp = line.replace(
+                `"${item}"`,
+                `intl.get("Object.keys(enTitleObj)[0])"`
+              );
+            } else {
+              rp = line.replace(
+                `"${item}"`,
+                `{intl.get("Object.keys(enTitleObj)[0])"}`
+              );
+              rp = line.replace(
+                `${item}`,
+                `{intl.get("Object.keys(enTitleObj)[0])"}`
+              );
+            }
           }
         });
       }

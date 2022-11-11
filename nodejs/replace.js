@@ -5,6 +5,10 @@ const getLocaleCode = require('./getLocaleCode');
 
 const filePath = path.resolve('src/');
 
+const znchStr = fs.readFileSync(path.resolve('src/locale/zn_ch.ts'), 'utf-8');
+const znch = JSON.parse(znchStr.replace(/^export default /, ''));
+
+
 fileDisplay(filePath, (filepath) => {
   const regexp = /\.(t|j)sx?$/;
   if (
@@ -16,7 +20,7 @@ fileDisplay(filePath, (filepath) => {
       if (err) {
         console.log('读取文件内容失败！');
       } else {
-        let newContent = getLocaleCode(data, true);
+        let newContent = getLocaleCode(data, znch);
         fs.writeFile(filepath, newContent, 'utf-8', (err2) => {
           if (err2) {
             console.log('写入失败');
