@@ -71,16 +71,4 @@ setTimeout(() => {
       }
     }
   );
-  // fs.writeFile(
-  //   path.resolve('src/locale/translate.txt'),
-  //   Array.from(new Set(transArray)).join('\n'),
-  //   'utf-8',
-  //   (err2) => {
-  //     if (err2) {
-  //       console.log('写入失败');
-  //     } else {
-  //       console.log('finish');
-  //     }
-  //   }
-  // );
 }, 4000);
