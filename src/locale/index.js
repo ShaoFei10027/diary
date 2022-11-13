@@ -7,13 +7,13 @@ const getZ = (str) => {
 };
 
 const getE = (str) => {
-  const res = znch.find((item) => !!item[str]);
+  const res = enus.find((item) => !!item[str]);
   return res[str] || str;
 };
 
 const getTranslate = (str) => {
-  const config = window.config;
-  if (config.lang === 'en_US') {
+  const lang = localStorage.getItem('lang');
+  if (lang === 'en_US') {
     return getE(str);
   }
   return getZ(str);
