@@ -8,7 +8,7 @@ const columns = [
     width: '150px',
     title: (
       <div className={styles.splitCell}>
-        <div className={styles.left}>页面、{intl.get('function')}</div>
+        <div className={styles.left}>页面、功能</div>
         <div className={styles.right}>{intl.get('role')}</div>
       </div>
     ),

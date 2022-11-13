@@ -96,7 +96,11 @@ export default function Questions() {
       </div>
       <div className={styles.makeQuestion}>
         <Card
-          title={curId ? `查看/编辑问题（#${curId}）` : intl.get('New_problems')}
+          title={
+            curId
+              ? `${intl.get('ViewEdit_Question')}（#${curId}）`
+              : intl.get('New_problems')
+          }
           extra={
             <Button
               onClick={onSave}
@@ -114,7 +118,12 @@ export default function Questions() {
               <p>{intl.get('Problem_description')}</p>
               <Form.Item
                 name="question"
-                rules={[{ required: true, message: intl.get('Problem_description_is_required') }]}
+                rules={[
+                  {
+                    required: true,
+                    message: intl.get('Problem_description_is_required'),
+                  },
+                ]}
               >
                 <Input.TextArea
                   rows={5}
@@ -127,7 +136,12 @@ export default function Questions() {
               <p>{intl.get('Answer_analysis')}</p>
               <Form.Item
                 name="explanation"
-                rules={[{ required: true, message: intl.get('Answer_resolution_is_required') }]}
+                rules={[
+                  {
+                    required: true,
+                    message: intl.get('Answer_resolution_is_required'),
+                  },
+                ]}
               >
                 <Input.TextArea
                   rows={5}

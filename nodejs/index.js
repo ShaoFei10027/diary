@@ -6,6 +6,21 @@ const getLocaleCode = require('./getLocaleCode');
 
 const filePath = path.resolve('src/');
 const transArray = [];
+
+// console.log('run');
+// request(
+//   `http://localhost:9000/api/releaseTranslateFile`,
+//   { json: true },
+//   (err, res, body) => {
+//     // 这里其实并不需要返回翻译结果，后端直接生成翻译的文件即可
+//     if (err) {
+//       console.log(err);
+//     } else if (body.success) {
+//       console.log(body.data);
+//     }
+//   }
+// );
+
 fileDisplay(filePath, (filepath) => {
   const regexp = /\.(t|j)sx?$/;
   if (
@@ -26,48 +41,16 @@ fileDisplay(filePath, (filepath) => {
 
 setTimeout(() => {
   const data = Array.from(new Set(transArray)).join('\n');
+  // data是需要翻译的内容数组
   request(
     `http://localhost:9000/api/translate?q=${encodeURIComponent(data)}`,
     { json: true },
     (err, res, body) => {
+      // 这里其实并不需要返回翻译结果，后端直接生成翻译的文件即可
       if (err) {
         console.log(err);
       } else if (body.success) {
-        const jsonArr = body.data;
-        const zn_ch = [];
-        const en_us = [];
-        jsonArr.forEach((item) => {
-          zn_ch.push({
-            [item.dst.replace(/ /g, '_')]: item.src,
-          });
-          en_us.push({
-            [item.dst.replace(/ /g, '_')]: item.dst,
-          });
-        });
-        fs.writeFile(
-          path.resolve('src/locale/zn_ch.ts'),
-          `export default ${JSON.stringify(zn_ch)}`,
-          'utf-8',
-          (err2) => {
-            if (err2) {
-              console.log('写入失败');
-            } else {
-              console.log('finish znch');
-            }
-          }
-        );
-        fs.writeFile(
-          path.resolve('src/locale/en_us.ts'),
-          `export default ${JSON.stringify(en_us)}`,
-          'utf-8',
-          (err2) => {
-            if (err2) {
-              console.log('写入失败');
-            } else {
-              console.log('finish enus');
-            }
-          }
-        );
+        console.log(body.data);
       }
     }
   );
