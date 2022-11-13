@@ -8,7 +8,12 @@ import { checkLogin, logout } from '@/api';
 import { setLogin, setUserInfo } from '@/reducer/rootSlice';
 import styles from './index.less';
 
-const unchangedItems: any = [];
+const unchangedItems: any = [
+  {
+    label: intl.getChangeLang(),
+    key: 'lang',
+  },
+];
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const { isLogin, userInfo } = useSelector((state: any) => state.root);
@@ -17,6 +22,9 @@ export default function Header() {
 
   const handleClick = (e: any) => {
     switch (e.key) {
+      case 'lang':
+        intl.changeLang();
+        return;
       case 'login':
         setVisible(true);
         return;
@@ -47,7 +55,9 @@ export default function Header() {
       dispatch(setUserInfo(res.data));
       setVisible(false);
     } else {
-      message.error(intl.get('The_account_does_not_exist_or_the_password_is_incorrect'));
+      message.error(
+        intl.get('The_account_does_not_exist_or_the_password_is_incorrect')
+      );
     }
   };
   const goHome = () => {
@@ -67,39 +77,43 @@ export default function Header() {
 
   const items = useMemo(() => {
     if (isLogin) {
-      return unchangedItems.concat([
-        {
-          label: userInfo.account,
-          key: 'account',
-          children: [
-            {
-              label: intl.get('Personal_Center'),
-              key: 'userInfo',
-            },
+      return unchangedItems
+        .concat([
+          {
+            label: userInfo.account,
+            key: 'account',
+            children: [
+              {
+                label: intl.get('Personal_Center'),
+                key: 'userInfo',
+              },
 
-            {
-              label: intl.get('Log_out'),
-              key: 'logout',
-            },
-          ].concat(
-            userInfo.role === 'admin'
-              ? [
-                  {
-                    label: intl.get('Manage_background'),
-                    key: 'admin',
-                  },
-                ]
-              : []
-          ),
-        },
-      ]);
+              {
+                label: intl.get('Log_out'),
+                key: 'logout',
+              },
+            ].concat(
+              userInfo.role === 'admin'
+                ? [
+                    {
+                      label: intl.get('Manage_background'),
+                      key: 'admin',
+                    },
+                  ]
+                : []
+            ),
+          },
+        ])
+        .reverse();
     }
-    return unchangedItems.concat([
-      {
-        label: intl.get('Sign_in'),
-        key: 'login',
-      },
-    ]);
+    return unchangedItems
+      .concat([
+        {
+          label: intl.get('Sign_in'),
+          key: 'login',
+        },
+      ])
+      .reverse();
   }, [isLogin, userInfo.account, userInfo.role]);
   return (
     <div className={styles.header}>
