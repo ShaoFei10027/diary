@@ -15,7 +15,7 @@ export default function Layouts() {
           : [true, true];
         let Element = null;
         if (!requireLoginStatus) {
-          Element = <div>无权限，请先登录</div>;
+          Element = <div>{intl.get('No_permission_please_log_in_first')}</div>;
         } else if (!requireRoleStatus) {
           Element = <div>{intl.get('No_permission')}</div>;
         } else {

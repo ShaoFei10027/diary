@@ -8,7 +8,7 @@ const columns = [
     width: '150px',
     title: (
       <div className={styles.splitCell}>
-        <div className={styles.left}>页面、功能</div>
+        <div className={styles.left}>{intl.get('Page_function')}</div>
         <div className={styles.right}>{intl.get('role')}</div>
       </div>
     ),
@@ -41,7 +41,7 @@ const data = [
     page: intl.get('browse'),
   },
   {
-    page: '回复、留言',
+    page: intl.get('Reply_and_leave_a_message'),
   },
   {
     page: intl.get('Theme_Colors'),

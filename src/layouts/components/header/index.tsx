@@ -42,12 +42,12 @@ export default function Header() {
   const onLoginSuccess = (res: any) => {
     // FIXME 前后端统一类型res
     if (res.success) {
-      message.success('登录成功！');
+      message.success(intl.get('Login_succeeded'));
       dispatch(setLogin());
       dispatch(setUserInfo(res.data));
       setVisible(false);
     } else {
-      message.error('账号不存在或密码错误！');
+      message.error(intl.get('The_account_does_not_exist_or_the_password_is_incorrect'));
     }
   };
   const goHome = () => {

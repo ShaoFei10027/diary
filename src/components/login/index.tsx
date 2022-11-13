@@ -28,7 +28,7 @@ export default function Login(props: IProps) {
           });
       })
       .catch(() => {
-        message.error('请输入账号和密码！');
+        message.error(intl.get('Please_enter_your_account_and_password'));
       });
   };
   useEffect(() => {
