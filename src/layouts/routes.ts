@@ -41,7 +41,7 @@ const routesConfig: RouteType[] = [
             component: lazy(() => import('@/pages/admin/statistics')),
           },
           {
-            path: 'translate',
+            path: 'translate/list',
             component: lazy(() => import('@/pages/admin/translate')),
           },
           {

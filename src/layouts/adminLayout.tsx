@@ -13,6 +13,7 @@ export default function AdminLayout() {
   const history = useNavigate();
   const location = useLocation();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
   const handleSelect = ({ key }: ItemType) => {
     history(`/admin/${key}`);
   };
@@ -25,25 +26,63 @@ export default function AdminLayout() {
     if (arr.length === 2 || arr[2] === '') {
       setSelectedKeys(['info']);
     } else {
-      setSelectedKeys([arr[2]]);
+      const k = arr.slice(2);
+      setSelectedKeys([k.join('/')]);
+      if (k.length > 1) {
+        console.log(k, '============');
+        setOpenKeys([k[0]]);
+      } else {
+        setOpenKeys([]);
+      }
     }
   }, [location]);
+  const menuItems = [
+    {
+      label: intl.get('Question_bank_management'),
+      key: 'questions',
+    },
+    {
+      label: intl.get('Content_Creation'),
+      key: 'products',
+    },
+    {
+      label: intl.get('data_statistics'),
+      key: 'statistics',
+    },
+    {
+      label: '国际化',
+      key: 'translate',
+      onTitleClick: () => handleSelect({ key: 'translate/list' }),
+      children: [
+        {
+          label: '数据列表',
+          key: 'translate/list',
+        },
+        {
+          label: '数据上传与发布',
+          key: 'translate/upload',
+        },
+        {
+          label: '操作文档',
+          key: 'translate/document',
+        },
+      ],
+    },
+    {
+      label: intl.get('curriculum_vitae'),
+      key: 'resume',
+    },
+  ];
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
         <Menu
-          mode="vertical"
+          mode="inline"
           onClick={handleSelect}
           selectedKeys={selectedKeys}
-        >
-          <Menu.Item key="questions">
-            {intl.get('Question_bank_management')}
-          </Menu.Item>
-          <Menu.Item key="products">{intl.get('Content_Creation')}</Menu.Item>
-          <Menu.Item key="statistics">{intl.get('data_statistics')}</Menu.Item>
-          <Menu.Item key="translate">国际化</Menu.Item>
-          <Menu.Item key="resume">{intl.get('curriculum_vitae')}</Menu.Item>
-        </Menu>
+          openKeys={openKeys}
+          items={menuItems}
+        />
         <div
           onClick={handleClickSettings}
           className={`${styles.settings} ${
