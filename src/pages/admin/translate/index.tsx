@@ -126,7 +126,7 @@ export default function Translate() {
   ];
   return (
     <div className={styles.page}>
-      <Card title="国际化">
+      <Card title="数据列表">
         <div className={styles.search}>
           <Form form={form} layout="inline">
             <Form.Item label="关键词" name="key">

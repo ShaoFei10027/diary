@@ -59,8 +59,8 @@ export default function AdminLayout() {
           key: 'translate/list',
         },
         {
-          label: '数据上传与发布',
-          key: 'translate/upload',
+          label: '数据处理与发布',
+          key: 'translate/publish',
         },
         {
           label: '操作文档',

@@ -27,3 +27,4 @@ export const getTranslateData = (params: any) =>
   get('/api/getTranslateData', params);
 export const updateTransDate = (params: any) =>
   post('/api/updateTransDate', params);
+export const getDulpTranslateData = () => get('/api/getDulpTranslateData');
