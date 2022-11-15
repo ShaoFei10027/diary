@@ -22,3 +22,8 @@ export const getQuestions = () => get('/api/questions');
 export const getQuestion = (id: number) => get(`/api/question/${id}`);
 export const saveQuestion = (params: QuestionType) =>
   post('/api/question', params);
+
+export const getTranslateData = (params: any) =>
+  get('/api/getTranslateData', params);
+export const updateTransDate = (params: any) =>
+  post('/api/updateTransDate', params);

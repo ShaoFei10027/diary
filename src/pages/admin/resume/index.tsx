@@ -42,7 +42,7 @@ export default function Resume() {
                 前端开发工程师（个人发展）
               </li>
               <li>
-                <strong>浩鲸智能科技有限公司</strong> 2020.07 - 2020.08
+                <strong>浩鲸智能科技有限公司</strong> 2020.07 - 2022.08
                 前端开发工程师（部门裁员）
               </li>
             </ul>

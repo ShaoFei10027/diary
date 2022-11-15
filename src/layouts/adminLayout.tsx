@@ -36,9 +36,12 @@ export default function AdminLayout() {
           onClick={handleSelect}
           selectedKeys={selectedKeys}
         >
-          <Menu.Item key="questions">{intl.get('Question_bank_management')}</Menu.Item>
+          <Menu.Item key="questions">
+            {intl.get('Question_bank_management')}
+          </Menu.Item>
           <Menu.Item key="products">{intl.get('Content_Creation')}</Menu.Item>
           <Menu.Item key="statistics">{intl.get('data_statistics')}</Menu.Item>
+          <Menu.Item key="translate">国际化</Menu.Item>
           <Menu.Item key="resume">{intl.get('curriculum_vitae')}</Menu.Item>
         </Menu>
         <div
