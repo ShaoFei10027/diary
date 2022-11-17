@@ -3,6 +3,7 @@ import Background from './components/Background';
 import Card from './components/Card';
 import Experience from './components/Experience';
 import Download from '@/components/download';
+import { baseUrl } from '@/utils';
 import styles from './index.less';
 
 export default function Resume() {
@@ -107,7 +108,7 @@ export default function Resume() {
               <li>
                 <Download
                   name="前端工程师-邵飞.doc"
-                  url="http://localhost:9000/api/download/resume"
+                  url={`${baseUrl}/api/download/resume`}
                 />
               </li>
             </ul>

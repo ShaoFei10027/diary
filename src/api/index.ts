@@ -1,9 +1,11 @@
 import { get as fetchGet, post as fetchPost } from './fetch';
 import { QuestionType } from './api.d';
+import { baseUrl } from '@/utils';
+
 interface ParamsType {
   [propsName: string]: any;
 }
-const baseUrl = 'http://localhost:9000';
+
 const get = (url: string, params?: ParamsType) =>
   fetchGet(baseUrl + url, params);
 const post = (url: string, params?: ParamsType) =>
