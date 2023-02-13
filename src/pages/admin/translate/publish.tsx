@@ -149,6 +149,7 @@ export default function Publish() {
                       title={item.loading.title}
                       description={item.loading.desc}
                       icon={i > 0 ? <SmileOutlined /> : <LoadingOutlined />}
+                      key={item.loading.title}
                     />
                   );
                 })}
